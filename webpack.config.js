@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 const isProd = process.env.REACT_APP_NODE_ENV === 'production'
 
@@ -28,6 +29,12 @@ const config = {
     new HtmlWebpackPlugin({
       template: "src/index.html", // to import index.html file inside index.js
     }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
+    }),
   ],
   devServer: {},
   devtool: 'hidden-source-map',
@@ -48,6 +55,22 @@ const config = {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/, // to import images and fonts
         loader: "url-loader",
         options: { limit: false },
+      },
+      {
+        test: /\.less$/i,
+        exclude: /\.module\.(less)$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
       },
     ],
   },
