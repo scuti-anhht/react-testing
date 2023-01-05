@@ -2,11 +2,11 @@ import * as React from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 
 export default function Register() {
-  const onFinish = (values) => {
+  const onFinish = (values: any) => {
     console.log("Success:", values);
   };
 
-  const onFinishFailed = (errorInfo) => {
+  const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
 
@@ -20,6 +20,7 @@ export default function Register() {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
+      <h1>Test</h1>
       <Form.Item
         label="Username"
         name="username"
@@ -27,7 +28,6 @@ export default function Register() {
       >
         <Input />
       </Form.Item>
-      <h1>Test</h1>
       <Form.Item
         label="Password"
         name="password"

@@ -1,7 +1,13 @@
 import React from "react";
+import AppLayout from "./layouts/AppLayout";
+import Register from "./views/pages/Register";
 
 const App = () => {
-  return <h1 id="test">Hello React</h1>;
+  return (
+    <AppLayout>
+      <Register />
+    </AppLayout>
+  );
 };
 
 export default App;

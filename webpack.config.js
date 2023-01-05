@@ -45,6 +45,13 @@ const config = {
         exclude: /node_modules/, // excluding the node_modules folder
         use: {
           loader: "babel-loader",
+          options: {
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react',
+              '@babel/preset-typescript',
+            ],
+          },
         },
       },
       {
