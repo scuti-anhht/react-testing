@@ -87,11 +87,7 @@ config.devServer = {
   static: path.join(__dirname, 'build'),
   historyApiFallback: true,
   port: process.env.REACT_APP_DEFAULT_PORT,
-  open: {
-    app: {
-      name: 'google-chrome',
-    },
-  },
+  open: true,
   hot: true,
 }
 
