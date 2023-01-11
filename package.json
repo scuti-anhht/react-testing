@@ -7,7 +7,7 @@
     "dev": "env-cmd -f .env.development webpack-dev-server",
     "build": "env-cmd -f .env.staging webpack --mode production",
     "test": "jest --watch",
-    "test:coverage": "npm run test -- --coverage --watchAll=false"
+    "test:coverage": "npm run test -- --coverage --watchAll=true"
   },
   "keywords": [],
   "author": "",
