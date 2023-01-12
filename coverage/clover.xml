@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1673411384026" clover="3.2.0">
-  <project timestamp="1673411384026" name="All files">
-    <metrics statements="13" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="2" elements="21" coveredelements="17" complexity="0" loc="13" ncloc="13" packages="1" files="1" classes="1"/>
+<coverage generated="1673512779576" clover="3.2.0">
+  <project timestamp="1673512779576" name="All files">
+    <metrics statements="11" coveredstatements="10" conditionals="6" coveredconditionals="4" methods="4" coveredmethods="3" elements="21" coveredelements="17" complexity="0" loc="11" ncloc="11" packages="1" files="1" classes="1"/>
     <file name="index.tsx" path="/home/glucozodev/Projects/React-Webpack-Base/src/views/pages/Register/index.tsx">
-      <metrics statements="13" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="2"/>
+      <metrics statements="11" coveredstatements="10" conditionals="6" coveredconditionals="4" methods="4" coveredmethods="3"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
       <line num="5" count="2" type="stmt"/>
       <line num="6" count="2" type="stmt"/>
-      <line num="7" count="1" type="stmt"/>
-      <line num="8" count="1" type="stmt"/>
+      <line num="7" count="2" type="stmt"/>
+      <line num="8" count="0" type="stmt"/>
       <line num="11" count="2" type="stmt"/>
-      <line num="12" count="0" type="stmt"/>
-      <line num="15" count="2" type="stmt"/>
-      <line num="17" count="2" type="stmt"/>
-      <line num="18" count="0" type="stmt"/>
-      <line num="21" count="2" type="stmt"/>
+      <line num="13" count="2" type="stmt"/>
+      <line num="66" count="7" type="stmt"/>
+      <line num="71" count="9" type="stmt"/>
     </file>
   </project>
 </coverage>

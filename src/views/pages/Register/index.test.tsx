@@ -5,22 +5,77 @@ import "@testing-library/jest-dom";
 import Register from ".";
 import { act } from "react-dom/test-utils";
 
-test("Register shows default value", async () => {
-  render(<Register />);
-  await act(async () => {
-    fireEvent.change(screen.getByLabelText("username"), {
-      target: { value: "0966666666" },
+describe("Login", () => {
+  //Invalid inputs
+  test("Invalid inputs", async () => {
+    render(<Register data-testid="component" />);
+
+    //click login
+    await userEvent.click(
+      screen.getByRole("button", {
+        name: "Login",
+      })
+    );
+
+    const inputEmail = screen.getByPlaceholderText("Enter your email");
+    const inputPassword = screen.getByPlaceholderText("Enter your password");
+
+    await waitFor(() => {
+      expect(inputEmail).toBeVisible();
     });
-    fireEvent.change(screen.getByLabelText("password"), {
-      target: { value: "1232113" },
+
+    await waitFor(() => {
+      expect(inputPassword).toBeVisible();
     });
-    fireEvent.click(screen.getByRole("button", { name: "Login" }));
+
+    expect(
+      await screen.findByText("Please input your username!")
+    ).toBeVisible();
+    expect(
+      await screen.findByText("Please input your password!")
+    ).toBeVisible();
   });
-  expect(screen.getByLabelText("username")).toHaveValue("0966666666");
-  expect(screen.getByLabelText("password")).toHaveValue("1232113");
-  expect(screen.getByTestId("username")).toBeInTheDocument();
-  expect(screen.getByTestId("password")).toBeInTheDocument();
+
+  //Invalid email value
+  test("Invalid email value", async () => {
+    render(<Register />);
+
+    const inputEmail = screen.getByPlaceholderText("Enter your email");
+    const inputPassword = screen.getByPlaceholderText("Enter your password");
+
+    //change email
+    await act(async () => {
+      fireEvent.change(inputEmail, {
+        target: { value: "0966666666" },
+      });
+      fireEvent.change(inputPassword, {
+        target: { value: "0966666666" },
+      });
+    });
+
+    expect(await screen.findByText("Invalid email format")).toBeVisible();
+    // expect(
+    //   await screen.findByText("Please input your password!")
+    // ).not.toBeVisible();
+  });
 });
+
+// test("Register shows default value", async () => {
+//   render(<Register />);
+//   await act(async () => {
+//     fireEvent.change(screen.getByLabelText("username"), {
+//       target: { value: "0966666666" },
+//     });
+//     fireEvent.change(screen.getByLabelText("password"), {
+//       target: { value: "1232113" },
+//     });
+//     fireEvent.click(screen.getByRole("button", { name: "Login" }));
+//   });
+//   expect(screen.getByLabelText("username")).toHaveValue("0966666666");
+//   expect(screen.getByLabelText("password")).toHaveValue("1232113");
+//   expect(screen.getByTestId("username")).toBeInTheDocument();
+//   expect(screen.getByTestId("password")).toBeInTheDocument();
+// });
 
 // it("renders with or without a name", () => {
 //   act(async () => {

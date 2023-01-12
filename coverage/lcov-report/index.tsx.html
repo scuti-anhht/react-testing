@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.61% </span>
+                <span class="strong">90.9% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/13</span>
+                <span class='fraction'>10/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.61% </span>
+                <span class="strong">90.9% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/13</span>
+                <span class='fraction'>10/11</span>
             </div>
         
             
@@ -144,16 +144,14 @@
 <a name='L79'></a><a href='#L79'>79</a>
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,10 +159,6 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -213,6 +207,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -229,61 +233,53 @@
 import { Button, Checkbox, Form, Input, Space } from "antd";
 &nbsp;
 export default function Register() {
+  const [form] = Form.useForm();
   const [data, setData] = useState&lt;{ username?: string; password?: string }&gt;();
-  const onFinish = (values: any) =&gt; {
-    console.log("Success:", values);
-    setData(values);
-  };
-&nbsp;
-  const onFinishFailed = <span class="fstat-no" title="function not covered" >(e</span>rrorInfo: any) =&gt; {
-<span class="cstat-no" title="statement not covered" >    console.log("Failed:", errorInfo);</span>
+  const onFinish = <span class="fstat-no" title="function not covered" >async </span>(values: any) =&gt; {
+<span class="cstat-no" title="statement not covered" >    setData(values);</span>
   };
 &nbsp;
   const [state, setState] = useState("Initial State");
 &nbsp;
-  const changeState = <span class="fstat-no" title="function not covered" >() =</span>&gt; {
-<span class="cstat-no" title="statement not covered" >    setState("Initial State Changed");</span>
-  };
-&nbsp;
   return (
-    // &lt;div&gt;
-    //   &lt;button onClick={changeState}&gt;Change Button&lt;/button&gt;
-    //   &lt;p&gt;{state}&lt;/p&gt;
-    // &lt;/div&gt;
     &lt;Space
       align="center"
       direction="horizontal"
-      style={{ flexDirection: "column" }}
+      style={{ flexDirection: "column", paddingTop: "2rem" }}
     &gt;
-      &lt;h1&gt;Login Text&lt;/h1&gt;
+      &lt;h1&gt;Login Page&lt;/h1&gt;
       {data?.username &amp;&amp; (
-        &lt;span data-testid="username"&gt;{`UserName : ${data?.username}`}&lt;/span&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;span data-testid="username"&gt;{`UserName : ${data?.username}`}&lt;/span&gt;</span>
       )}
       {data?.password &amp;&amp; (
-        &lt;span data-testid="password"&gt;{`password : ${data?.password}`}&lt;/span&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;span data-testid="password"&gt;{`password : ${data?.password}`}&lt;/span&gt;</span>
       )}
-      &lt;Form
-        name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      &gt;
+      &lt;Form form={form} name="basic" onFinish={onFinish} scrollToFirstError&gt;
         &lt;Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          rules={[
+            {
+              required: true,
+              message: "Please input your username!",
+            },
+            {
+              type: "email",
+              message: "Invalid email format",
+            },
+          ]}
         &gt;
-          &lt;Input aria-label="username" /&gt;
+          &lt;Input aria-label="username" placeholder="Enter your email" /&gt;
         &lt;/Form.Item&gt;
         &lt;Form.Item
           label="Password"
           name="password"
           rules={[{ required: true, message: "Please input your password!" }]}
         &gt;
-          &lt;Input.Password aria-label="password" /&gt;
+          &lt;Input.Password
+            aria-label="password"
+            placeholder="Enter your password"
+          /&gt;
         &lt;/Form.Item&gt;
         &lt;div&gt;
           &lt;Form.Item
@@ -296,10 +292,20 @@ export default function Register() {
           &lt;/Form.Item&gt;
         &lt;/div&gt;
         &lt;div style={{ marginTop: "1rem" }}&gt;
-          &lt;Form.Item wrapperCol={{ offset: 8, span: 16 }} noStyle&gt;
-            &lt;Button type="primary" htmlType="submit"&gt;
-              Login
-            &lt;/Button&gt;
+          &lt;Form.Item wrapperCol={{ offset: 8, span: 16 }} noStyle shouldUpdate&gt;
+            {() =&gt; (
+              &lt;Button
+                type="primary"
+                htmlType="submit"
+                disabled={
+                  !form.isFieldsTouched(["username", "password"]) ||
+                  form.getFieldsError().filter(({ errors }) =&gt; errors.length)
+                    .length &gt; 0
+                }
+              &gt;
+                Login
+              &lt;/Button&gt;
+            )}
           &lt;/Form.Item&gt;
         &lt;/div&gt;
       &lt;/Form&gt;
@@ -313,7 +319,7 @@ export default function Register() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-01-11T04:29:44.024Z
+                at 2023-01-12T08:39:39.574Z
             </div>
         <script src="prettify.js"></script>
         <script>
