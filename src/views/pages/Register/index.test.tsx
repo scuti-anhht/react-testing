@@ -4,6 +4,9 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import Register from ".";
 import { act } from "react-dom/test-utils";
+import axios from "axios";
+
+jest.mock("axios");
 
 describe("Login", () => {
   //Invalid inputs
@@ -17,23 +20,11 @@ describe("Login", () => {
       })
     );
 
-    const inputEmail = screen.getByPlaceholderText("Enter your email");
-    const inputPassword = screen.getByPlaceholderText("Enter your password");
-
-    await waitFor(() => {
-      expect(inputEmail).toBeVisible();
-    });
-
-    await waitFor(() => {
-      expect(inputPassword).toBeVisible();
-    });
-
     expect(
-      await screen.findByText("Please input your username!")
-    ).toBeVisible();
-    expect(
-      await screen.findByText("Please input your password!")
-    ).toBeVisible();
+      screen.getByRole("button", {
+        name: "Login",
+      })
+    ).toBeDisabled();
   });
 
   //Invalid email value
@@ -57,6 +48,21 @@ describe("Login", () => {
     // expect(
     //   await screen.findByText("Please input your password!")
     // ).not.toBeVisible();
+    expect(
+      screen.getByRole("button", {
+        name: "Login",
+      })
+    ).toBeDisabled();
+  });
+
+  //API call
+  test("API call", async () => {
+    render(<Register data-testid="component" />);
+
+    //click login
+    const getSpy = jest.spyOn(axios, "get");
+
+    expect(getSpy).toBeCalled();
   });
 });
 

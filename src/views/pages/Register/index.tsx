@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Checkbox, Form, Input, Space } from "antd";
 
 export default function Register() {
@@ -7,8 +7,6 @@ export default function Register() {
   const onFinish = async (values: any) => {
     setData(values);
   };
-
-  const [state, setState] = useState("Initial State");
 
   return (
     <Space
