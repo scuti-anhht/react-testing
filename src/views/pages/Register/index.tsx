@@ -8,6 +8,21 @@ export default function Register() {
     setData(values);
   };
 
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts", { method: "GET" })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw Error();
+        }
+      })
+      .then((postsData) => {
+        console.log(postsData);
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <Space
       align="center"
