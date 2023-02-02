@@ -7,6 +7,22 @@ export default function Register() {
   const onFinish = async (values: any) => {
     setData(values);
   };
+  const [posts, setPosts] = useState<any>([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw Error();
+        }
+      })
+      .then((postsData) => {
+        setPosts(postsData);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <Space
@@ -15,6 +31,13 @@ export default function Register() {
       style={{ flexDirection: "column", paddingTop: "2rem" }}
     >
       <h1>Login Page</h1>
+      {posts?.length > 0 && (
+        <ul>
+          {posts.slice(0, 10).map((item: any) => (
+            <li key={item?.id}>{item?.title}</li>
+          ))}
+        </ul>
+      )}
       {data?.username && (
         <span data-testid="username">{`UserName : ${data?.username}`}</span>
       )}

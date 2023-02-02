@@ -1,12 +1,17 @@
-import React from "react";
+import "../../../__mocks__/matchMedia.mock";
+import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import "@testing-library/jest-dom";
-import Register from ".";
+import fetchMock from "jest-fetch-mock";
+import React from "react";
 import { act } from "react-dom/test-utils";
-import axios from "axios";
+import Register from ".";
+import { setupServer, SetupServerApi } from "msw/node";
+import { rest } from "msw";
+import { Post } from "@utils/Types";
 
 jest.mock("axios");
+fetchMock.enableMocks();
 
 describe("Login", () => {
   //Invalid inputs
@@ -46,7 +51,7 @@ describe("Login", () => {
 
     expect(await screen.findByText("Invalid email format")).toBeVisible();
     // expect(
-    //   await screen.findByText("Please input your password!")
+    //   await screen.findByText("Please input your password!", { exact: false })
     // ).not.toBeVisible();
     expect(
       screen.getByRole("button", {
@@ -57,39 +62,47 @@ describe("Login", () => {
 
   //API call
   test("API call", async () => {
-    render(<Register data-testid="component" />);
+    render(<Register />);
 
-    //click login
-    const getSpy = jest.spyOn(axios, "get");
-
-    expect(getSpy).toBeCalled();
+    await waitFor(() => {
+      const postsItems = screen.getAllByRole("listitem");
+      expect(postsItems).toHaveLength(2);
+    });
   });
 });
 
-// test("Register shows default value", async () => {
-//   render(<Register />);
-//   await act(async () => {
-//     fireEvent.change(screen.getByLabelText("username"), {
-//       target: { value: "0966666666" },
-//     });
-//     fireEvent.change(screen.getByLabelText("password"), {
-//       target: { value: "1232113" },
-//     });
-//     fireEvent.click(screen.getByRole("button", { name: "Login" }));
+// describe("The PostsList component", () => {
+//   let server: SetupServerApi;
+//   afterEach(() => {
+//     server.close();
 //   });
-//   expect(screen.getByLabelText("username")).toHaveValue("0966666666");
-//   expect(screen.getByLabelText("password")).toHaveValue("1232113");
-//   expect(screen.getByTestId("username")).toBeInTheDocument();
-//   expect(screen.getByTestId("password")).toBeInTheDocument();
-// });
+//   describe("if fetching posts is a success", () => {
+//     let posts: Post[];
+//     beforeEach(() => {
+//       posts = [
+//         {
+//           id: "1",
+//           title: "First post",
+//         },
+//         {
+//           id: "2",
+//           title: "Second post",
+//         },
+//       ];
+//       server = setupServer(
+//         rest.get(
+//           "https://jsonplaceholder.typicode.com/posts",
+//           (request, response, context) => {
+//             return response(context.json(posts));
+//           }
+//         )
+//       );
+//       server.listen();
+//     });
+//     it("should display the titles of all of the posts", async () => {
+//       const postsList = render(<Register />);
 
-// it("renders with or without a name", () => {
-//   act(async () => {
-//     render(<Register />);
-//     const button = screen.getByRole("button", { name: "Change Button" });
-//     fireEvent.click(button);
+//       expect(postsList.getByText("Second post")).toBeInTheDocument();
+//     });
 //   });
-//   expect(screen.getByText("Initial State").textContent).toBe(
-//     "Initial State Changed"
-//   );
 // });
